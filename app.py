@@ -80,82 +80,95 @@ def get_diet_recommendations(cortisol_level):
     }
     
     if cortisol_level < 5:
-        recommendations["status"] = "Low Cortisol"
+        recommendations["status"] = "Low Cortisol - Adrenal Fatigue Risk"
         recommendations["diet_advice"] = [
-            "Increase salt intake moderately",
-            "Eat regular meals to maintain blood sugar",
-            "Focus on whole grains and complex carbohydrates"
+            "Increase sodium intake moderately to support adrenal function",
+            "Eat small, frequent meals every 3-4 hours to stabilize blood sugar",
+            "Focus on nutrient-dense whole foods with adequate calories",
+            "Include vitamin C-rich foods (supports adrenal health)"
         ]
         recommendations["foods_to_eat"] = [
-            "Olives and pickles",
-            "Sweet potatoes",
-            "Brown rice",
-            "Bananas",
-            "Coconut",
-            "Lean proteins (chicken, fish)"
+            "Sea salt, olives, and naturally salty foods",
+            "Sweet potatoes, quinoa, and complex carbs",
+            "Citrus fruits (oranges, grapefruits) for vitamin C",
+            "Grass-fed beef, organic eggs for B vitamins",
+            "Avocados and coconut oil for healthy fats",
+            "Licorice root tea (consult healthcare provider)"
         ]
         recommendations["foods_to_avoid"] = [
-            "Excessive caffeine",
-            "Processed sugars",
-            "Alcohol"
+            "Excessive caffeine (worsens adrenal fatigue)",
+            "Refined sugars causing blood sugar crashes",
+            "Alcohol (depletes cortisol further)",
+            "Processed foods lacking nutrients"
         ]
         recommendations["lifestyle_tips"] = [
-            "Get 7-9 hours of sleep",
-            "Practice stress-reduction techniques",
-            "Avoid intense exercise temporarily"
+            "Prioritize 8-10 hours of sleep for adrenal recovery",
+            "Avoid high-intensity exercise; opt for gentle yoga or walking",
+            "Practice stress management (meditation, deep breathing)",
+            "Consider adaptogenic herbs: Ashwagandha, Rhodiola (consult doctor)",
+            "Monitor for signs of Addison's disease if persistent"
         ]
     elif 5 <= cortisol_level <= 18:
-        recommendations["status"] = "Normal Cortisol"
+        recommendations["status"] = "Optimal Cortisol Range"
         recommendations["diet_advice"] = [
-            "Maintain balanced nutrition",
-            "Continue healthy eating patterns",
-            "Stay hydrated throughout the day"
+            "Maintain balanced macronutrients (40% carbs, 30% protein, 30% fat)",
+            "Continue anti-inflammatory Mediterranean-style diet",
+            "Stay hydrated: 8-10 glasses of water daily",
+            "Support hormonal balance with nutrient-rich foods"
         ]
         recommendations["foods_to_eat"] = [
-            "Leafy greens (spinach, kale)",
-            "Fatty fish (salmon, mackerel)",
-            "Nuts and seeds",
-            "Berries",
-            "Whole grains",
-            "Lean proteins"
+            "Leafy greens (spinach, kale) for magnesium",
+            "Wild-caught fatty fish (salmon, mackerel) for omega-3s",
+            "Nuts, seeds (walnuts, flaxseeds) for healthy fats",
+            "Berries and citrus fruits for antioxidants",
+            "Whole grains (oats, quinoa) for sustained energy",
+            "Probiotic-rich foods (yogurt, kefir) for gut health"
         ]
         recommendations["foods_to_avoid"] = [
-            "Excessive processed foods",
-            "Too much caffeine (limit to 1-2 cups)",
-            "High-sugar snacks"
+            "Excessive processed foods and preservatives",
+            "High-sugar snacks causing insulin spikes",
+            "Trans fats and hydrogenated oils",
+            "Limit caffeine to 1-2 cups coffee per day"
         ]
         recommendations["lifestyle_tips"] = [
-            "Maintain regular sleep schedule",
-            "Exercise regularly (30 mins/day)",
-            "Practice mindfulness or meditation"
+            "Maintain consistent sleep schedule (7-9 hours)",
+            "Regular moderate exercise (30-45 mins, 5x/week)",
+            "Practice mindfulness or meditation daily",
+            "Stay socially connected for emotional well-being",
+            "Continue monitoring hormone levels for early detection"
         ]
     else:
-        recommendations["status"] = "High Cortisol"
+        recommendations["status"] = "Elevated Cortisol - Chronic Stress Indicator"
         recommendations["diet_advice"] = [
-            "Reduce caffeine and stimulants",
-            "Focus on anti-inflammatory foods",
-            "Eat foods rich in omega-3 fatty acids"
+            "Eliminate caffeine completely (worsens cortisol elevation)",
+            "Focus on anti-inflammatory, cortisol-lowering foods",
+            "Increase omega-3 fatty acids to reduce inflammation",
+            "Consider magnesium-rich foods for stress reduction",
+            "Avoid intermittent fasting (may elevate cortisol further)"
         ]
         recommendations["foods_to_eat"] = [
-            "Dark chocolate (70%+ cocoa)",
-            "Green tea",
-            "Fatty fish (salmon, sardines)",
-            "Blueberries and other berries",
-            "Avocados",
-            "Chamomile tea"
+            "Dark chocolate 85%+ cocoa (lowers cortisol naturally)",
+            "Green tea (L-theanine promotes calm without stimulation)",
+            "Wild salmon, sardines, walnuts (omega-3s)",
+            "Blueberries, blackberries (antioxidants)",
+            "Chamomile, holy basil tea (adaptogenic herbs)",
+            "Phosphatidylserine-rich foods (soybeans, white beans)"
         ]
         recommendations["foods_to_avoid"] = [
-            "Caffeine (coffee, energy drinks)",
-            "Refined sugars and carbs",
-            "Alcohol",
-            "Processed foods",
-            "Trans fats"
+            "All caffeinated beverages (coffee, energy drinks, black tea)",
+            "Refined sugars and high-glycemic carbs",
+            "Alcohol (disrupts HPA axis regulation)",
+            "Processed foods with additives",
+            "Trans fats and fried foods"
         ]
         recommendations["lifestyle_tips"] = [
-            "Practice deep breathing exercises",
-            "Prioritize 8+ hours of sleep",
-            "Try yoga or gentle stretching",
-            "Reduce work/study stress if possible"
+            "Prioritize 8+ hours quality sleep in dark, cool room",
+            "Practice deep breathing: 4-7-8 technique or box breathing",
+            "Engage in restorative yoga, tai chi, or gentle stretching",
+            "Limit screen time 2 hours before bed",
+            "Consider cortisol-lowering supplements: Ashwagandha, Rhodiola (medical supervision)",
+            "Screen for Cushing's syndrome if cortisol remains elevated",
+            "Monitor for metabolic syndrome and PCOS indicators"
         ]
     
     return recommendations

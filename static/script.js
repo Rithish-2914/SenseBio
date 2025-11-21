@@ -10,11 +10,11 @@ let currentMode = 'auto';
 
 function getStatusInfo(cortisol) {
     if (cortisol < 5) {
-        return { text: 'Low Cortisol', class: 'low' };
+        return { text: 'Low Cortisol - Adrenal Fatigue Risk', class: 'low' };
     } else if (cortisol >= 5 && cortisol <= 18) {
-        return { text: 'Normal', class: 'normal' };
+        return { text: 'Optimal Cortisol Range', class: 'normal' };
     } else {
-        return { text: 'High Cortisol', class: 'high' };
+        return { text: 'Elevated Cortisol - Chronic Stress Indicator', class: 'high' };
     }
 }
 

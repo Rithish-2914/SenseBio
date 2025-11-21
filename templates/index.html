@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SenseBio - Real-time Hormone Monitoring</title>
+    <title>SenseBio - Continuous Non-invasive Hormone Tracking Patch</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
@@ -15,26 +15,54 @@
         <div class="dashboard-card">
             <header class="header">
                 <h1 class="title">SenseBio</h1>
-                <p class="subtitle">Real-time Hormone Monitoring & Personalized Health Recommendations</p>
+                <p class="subtitle">Continuous Non-invasive Hormone Tracking Patch</p>
+                <p class="tagline">Real-time Biochemical Health Monitoring Through Wearable Biosensor Technology</p>
             </header>
 
+            <div class="info-section">
+                <div class="innovation-card">
+                    <h3>🔬 The Innovation</h3>
+                    <p>SenseBio is a breakthrough wearable biosensor patch that uses <strong>microneedle and electrochemical biosensor systems</strong> to continuously monitor hormone levels through the skin. Unlike traditional wearables that only track external signals (heart rate, temperature), SenseBio provides <strong>direct biochemical hormone measurement</strong> in real-time.</p>
+                </div>
+
+                <div class="conditions-grid">
+                    <div class="condition-card">
+                        <h4>Stress Dysregulation</h4>
+                        <p>Detects cortisol imbalances linked to chronic stress and adrenal fatigue</p>
+                    </div>
+                    <div class="condition-card">
+                        <h4>Metabolic Disorders</h4>
+                        <p>Monitors hormonal markers associated with diabetes and metabolic syndrome</p>
+                    </div>
+                    <div class="condition-card">
+                        <h4>PCOS & Reproductive Health</h4>
+                        <p>Tracks hormonal patterns related to polycystic ovary syndrome</p>
+                    </div>
+                    <div class="condition-card">
+                        <h4>Thyroid Irregularities</h4>
+                        <p>Continuous monitoring of thyroid-related hormone fluctuations</p>
+                    </div>
+                </div>
+            </div>
+
             <div class="mode-selector">
-                <button class="mode-btn active" id="autoModeBtn" onclick="switchMode('auto')">Auto Simulation</button>
-                <button class="mode-btn" id="manualModeBtn" onclick="switchMode('manual')">Manual Input</button>
+                <button class="mode-btn active" id="autoModeBtn" onclick="switchMode('auto')">Live Simulation</button>
+                <button class="mode-btn" id="manualModeBtn" onclick="switchMode('manual')">Patch Input</button>
             </div>
 
             <div id="autoMode" class="mode-content">
                 <div class="live-indicator">
                     <div class="pulse-dot"></div>
-                    <span>LIVE</span>
+                    <span>LIVE BIOSENSOR SIMULATION</span>
                 </div>
 
                 <div class="value-container">
-                    <div class="status-badge" id="statusBadge">Normal</div>
+                    <div class="status-badge normal" id="statusBadge">Optimal Cortisol Range</div>
                     <div class="value-display">
                         <span class="value-number" id="cortisolValue">--</span>
                         <span class="value-unit">ng/mL</span>
                     </div>
+                    <div class="hormone-label">Cortisol Level</div>
                     <div class="timestamp" id="timestamp">--</div>
                 </div>
 
@@ -45,18 +73,19 @@
 
             <div id="manualMode" class="mode-content" style="display: none;">
                 <div class="input-section">
-                    <h3 class="section-title">Enter Body Patch Sensor Data</h3>
-                    <p class="input-description">Input cortisol level from your SenseBio body patch</p>
+                    <h3 class="section-title">📊 Enter SenseBio Patch Reading</h3>
+                    <p class="input-description">Input real-time cortisol measurement from your wearable biosensor patch</p>
                     
                     <form id="cortisolInputForm" onsubmit="submitCortisol(event)">
                         <div class="input-group">
-                            <label for="cortisolInput">Cortisol Level</label>
+                            <label for="cortisolInput">Cortisol Level (from patch sensor)</label>
                             <div class="input-wrapper">
                                 <input type="number" id="cortisolInput" step="0.01" min="0" max="50" required placeholder="e.g., 12.5">
                                 <span class="input-unit">ng/mL</span>
                             </div>
+                            <p class="input-hint">Normal range: 5-18 ng/mL | Low: <5 ng/mL | High: >18 ng/mL</p>
                         </div>
-                        <button type="submit" class="submit-btn">Get Recommendations</button>
+                        <button type="submit" class="submit-btn">Analyze & Get Health Recommendations</button>
                     </form>
 
                     <div id="errorMessage" class="error-message" style="display: none;"></div>
@@ -64,42 +93,71 @@
 
                 <div id="recommendationsSection" class="recommendations-section" style="display: none;">
                     <div class="current-reading">
-                        <div class="status-badge" id="manualStatusBadge">Normal</div>
+                        <div class="status-badge normal" id="manualStatusBadge">Optimal Cortisol Range</div>
                         <div class="reading-value">
                             <span class="value-number" id="manualCortisolValue">--</span>
                             <span class="value-unit">ng/mL</span>
                         </div>
+                        <div class="hormone-label">Cortisol Level</div>
                         <div class="timestamp" id="manualTimestamp">--</div>
+                    </div>
+
+                    <div class="health-alert">
+                        <h3>📋 Personalized Health Recommendations</h3>
+                        <p>Based on your current hormone levels, here are science-backed dietary and lifestyle interventions:</p>
                     </div>
 
                     <div class="recommendations-grid">
                         <div class="recommendation-card">
-                            <h4>🍽️ Diet Advice</h4>
+                            <h4>🍽️ Dietary Interventions</h4>
                             <ul id="dietAdvice"></ul>
                         </div>
 
                         <div class="recommendation-card">
-                            <h4>✅ Foods to Eat</h4>
+                            <h4>✅ Recommended Foods</h4>
                             <ul id="foodsToEat"></ul>
                         </div>
 
                         <div class="recommendation-card">
-                            <h4>❌ Foods to Avoid</h4>
+                            <h4>❌ Foods to Limit</h4>
                             <ul id="foodsToAvoid"></ul>
                         </div>
 
                         <div class="recommendation-card">
-                            <h4>💪 Lifestyle Tips</h4>
+                            <h4>💪 Lifestyle Modifications</h4>
                             <ul id="lifestyleTips"></ul>
                         </div>
                     </div>
 
-                    <button class="reset-btn" onclick="resetInput()">Enter New Reading</button>
+                    <button class="reset-btn" onclick="resetInput()">📊 Enter New Reading</button>
+                </div>
+            </div>
+
+            <div class="tech-section">
+                <h3>⚡ Technology Stack</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <strong>Microneedle Array</strong>
+                        <p>Minimally invasive skin penetration for interstitial fluid (ISF) sampling</p>
+                    </div>
+                    <div class="tech-item">
+                        <strong>Electrochemical Biosensor</strong>
+                        <p>Real-time hormone detection through current measurement (μA)</p>
+                    </div>
+                    <div class="tech-item">
+                        <strong>Signal Processing</strong>
+                        <p>Amplification, noise filtering, and calibration algorithms</p>
+                    </div>
+                    <div class="tech-item">
+                        <strong>Wearable Electronics</strong>
+                        <p>Continuous monitoring with wireless data transmission</p>
+                    </div>
                 </div>
             </div>
 
             <footer class="footer">
-                SenseBio Prototype — Not a medical device
+                <p><strong>SenseBio Prototype</strong> — Biomedical Instrumentation & Biosensing Technology</p>
+                <p>Non-invasive Continuous Hormone Monitoring | Not FDA Approved — For Research & Demonstration Only</p>
             </footer>
         </div>
     </div>

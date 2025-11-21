@@ -41,9 +41,17 @@ body {
 }
 
 .subtitle {
-    font-size: 1rem;
+    font-size: 1.125rem;
+    color: #0099CC;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.tagline {
+    font-size: 0.875rem;
     color: #6B7280;
-    font-weight: 500;
+    font-weight: 400;
+    font-style: italic;
 }
 
 .mode-selector {
@@ -72,6 +80,65 @@ body {
 .mode-btn.active {
     background: #00D9FF;
     color: white;
+}
+
+.info-section {
+    margin-bottom: 2.5rem;
+}
+
+.innovation-card {
+    background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, rgba(0, 153, 204, 0.02) 100%);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 2px solid rgba(0, 217, 255, 0.2);
+    margin-bottom: 1.5rem;
+}
+
+.innovation-card h3 {
+    font-size: 1.25rem;
+    color: #0099CC;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.innovation-card p {
+    color: #374151;
+    line-height: 1.7;
+    font-size: 0.9375rem;
+}
+
+.conditions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.condition-card {
+    background: white;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid #E5E7EB;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.condition-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 217, 255, 0.2);
+}
+
+.condition-card h4 {
+    font-size: 1rem;
+    color: #1A1A1A;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.condition-card p {
+    font-size: 0.875rem;
+    color: #6B7280;
+    line-height: 1.5;
 }
 
 .mode-content {
@@ -170,6 +237,13 @@ body {
     font-weight: 400;
 }
 
+.hormone-label {
+    font-size: 1rem;
+    color: #0099CC;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
 .chart-container {
     margin-bottom: 2rem;
     height: 400px;
@@ -204,6 +278,13 @@ body {
     font-weight: 600;
     color: #1A1A1A;
     margin-bottom: 0.5rem;
+    text-align: left;
+}
+
+.input-hint {
+    font-size: 0.8125rem;
+    color: #6B7280;
+    margin-top: 0.5rem;
     text-align: left;
 }
 
@@ -268,6 +349,27 @@ body {
 
 .recommendations-section {
     animation: fadeIn 0.5s ease-in-out;
+}
+
+.health-alert {
+    background: #F0F9FF;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border-left: 4px solid #00D9FF;
+    margin-bottom: 1.5rem;
+}
+
+.health-alert h3 {
+    font-size: 1.25rem;
+    color: #0099CC;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.health-alert p {
+    font-size: 0.9375rem;
+    color: #374151;
+    line-height: 1.6;
 }
 
 .current-reading {
@@ -348,14 +450,63 @@ body {
     background: rgba(0, 217, 255, 0.1);
 }
 
+.tech-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #E5E7EB;
+}
+
+.tech-section h3 {
+    font-size: 1.25rem;
+    color: #0099CC;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.25rem;
+}
+
+.tech-item {
+    background: #F8F9FA;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid #E5E7EB;
+}
+
+.tech-item strong {
+    display: block;
+    font-size: 1rem;
+    color: #1A1A1A;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.tech-item p {
+    font-size: 0.875rem;
+    color: #6B7280;
+    line-height: 1.5;
+}
+
 .footer {
     text-align: center;
     font-size: 0.75rem;
     color: #6B7280;
-    font-style: italic;
     padding-top: 1.5rem;
-    border-top: 1px solid #E5E7EB;
+    border-top: 2px solid #E5E7EB;
     margin-top: 2rem;
+}
+
+.footer p {
+    margin: 0.25rem 0;
+}
+
+.footer strong {
+    color: #0099CC;
+    font-weight: 700;
 }
 
 @media (max-width: 768px) {
