@@ -15,25 +15,87 @@
         <div class="dashboard-card">
             <header class="header">
                 <h1 class="title">SenseBio</h1>
-                <p class="subtitle">Real-time Hormone Monitoring Prototype</p>
+                <p class="subtitle">Real-time Hormone Monitoring & Personalized Health Recommendations</p>
             </header>
 
-            <div class="live-indicator">
-                <div class="pulse-dot"></div>
-                <span>LIVE</span>
+            <div class="mode-selector">
+                <button class="mode-btn active" id="autoModeBtn" onclick="switchMode('auto')">Auto Simulation</button>
+                <button class="mode-btn" id="manualModeBtn" onclick="switchMode('manual')">Manual Input</button>
             </div>
 
-            <div class="value-container">
-                <div class="status-badge" id="statusBadge">Normal</div>
-                <div class="value-display">
-                    <span class="value-number" id="cortisolValue">--</span>
-                    <span class="value-unit">ng/mL</span>
+            <div id="autoMode" class="mode-content">
+                <div class="live-indicator">
+                    <div class="pulse-dot"></div>
+                    <span>LIVE</span>
                 </div>
-                <div class="timestamp" id="timestamp">--</div>
+
+                <div class="value-container">
+                    <div class="status-badge" id="statusBadge">Normal</div>
+                    <div class="value-display">
+                        <span class="value-number" id="cortisolValue">--</span>
+                        <span class="value-unit">ng/mL</span>
+                    </div>
+                    <div class="timestamp" id="timestamp">--</div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="cortisolChart"></canvas>
+                </div>
             </div>
 
-            <div class="chart-container">
-                <canvas id="cortisolChart"></canvas>
+            <div id="manualMode" class="mode-content" style="display: none;">
+                <div class="input-section">
+                    <h3 class="section-title">Enter Body Patch Sensor Data</h3>
+                    <p class="input-description">Input cortisol level from your SenseBio body patch</p>
+                    
+                    <form id="cortisolInputForm" onsubmit="submitCortisol(event)">
+                        <div class="input-group">
+                            <label for="cortisolInput">Cortisol Level</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="cortisolInput" step="0.01" min="0" max="50" required placeholder="e.g., 12.5">
+                                <span class="input-unit">ng/mL</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn">Get Recommendations</button>
+                    </form>
+
+                    <div id="errorMessage" class="error-message" style="display: none;"></div>
+                </div>
+
+                <div id="recommendationsSection" class="recommendations-section" style="display: none;">
+                    <div class="current-reading">
+                        <div class="status-badge" id="manualStatusBadge">Normal</div>
+                        <div class="reading-value">
+                            <span class="value-number" id="manualCortisolValue">--</span>
+                            <span class="value-unit">ng/mL</span>
+                        </div>
+                        <div class="timestamp" id="manualTimestamp">--</div>
+                    </div>
+
+                    <div class="recommendations-grid">
+                        <div class="recommendation-card">
+                            <h4>🍽️ Diet Advice</h4>
+                            <ul id="dietAdvice"></ul>
+                        </div>
+
+                        <div class="recommendation-card">
+                            <h4>✅ Foods to Eat</h4>
+                            <ul id="foodsToEat"></ul>
+                        </div>
+
+                        <div class="recommendation-card">
+                            <h4>❌ Foods to Avoid</h4>
+                            <ul id="foodsToAvoid"></ul>
+                        </div>
+
+                        <div class="recommendation-card">
+                            <h4>💪 Lifestyle Tips</h4>
+                            <ul id="lifestyleTips"></ul>
+                        </div>
+                    </div>
+
+                    <button class="reset-btn" onclick="resetInput()">Enter New Reading</button>
+                </div>
             </div>
 
             <footer class="footer">

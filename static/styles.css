@@ -17,7 +17,7 @@ body {
 
 .container {
     width: 100%;
-    max-width: 1000px;
+    max-width: 1200px;
 }
 
 .dashboard-card {
@@ -44,6 +44,43 @@ body {
     font-size: 1rem;
     color: #6B7280;
     font-weight: 500;
+}
+
+.mode-selector {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.mode-btn {
+    padding: 0.75rem 2rem;
+    border: 2px solid #00D9FF;
+    background: white;
+    color: #0099CC;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mode-btn:hover {
+    background: rgba(0, 217, 255, 0.1);
+}
+
+.mode-btn.active {
+    background: #00D9FF;
+    color: white;
+}
+
+.mode-content {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .live-indicator {
@@ -139,6 +176,178 @@ body {
     position: relative;
 }
 
+.input-section {
+    max-width: 500px;
+    margin: 0 auto 2rem;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0099CC;
+    margin-bottom: 0.5rem;
+}
+
+.input-description {
+    font-size: 0.875rem;
+    color: #6B7280;
+    margin-bottom: 2rem;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 600;
+    color: #1A1A1A;
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    padding-right: 5rem;
+    border: 2px solid #E5E7EB;
+    border-radius: 0.75rem;
+    font-size: 1.25rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    color: #1A1A1A;
+    transition: border-color 0.3s ease;
+}
+
+.input-wrapper input:focus {
+    outline: none;
+    border-color: #00D9FF;
+}
+
+.input-unit {
+    position: absolute;
+    right: 1.5rem;
+    font-size: 1rem;
+    color: #6B7280;
+    font-weight: 500;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #00D9FF 0%, #0099CC 100%);
+    color: white;
+    font-weight: 700;
+    font-size: 1.125rem;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 217, 255, 0.3);
+}
+
+.error-message {
+    background: #FEE2E2;
+    color: #DC2626;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    margin-top: 1rem;
+    font-weight: 500;
+}
+
+.recommendations-section {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.current-reading {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.reading-value {
+    background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(0, 153, 204, 0.05) 100%);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    margin: 1rem 0;
+    border: 2px solid rgba(0, 217, 255, 0.2);
+}
+
+.recommendations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.recommendation-card {
+    background: #F8F9FA;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid #E5E7EB;
+}
+
+.recommendation-card h4 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #0099CC;
+    margin-bottom: 1rem;
+}
+
+.recommendation-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.recommendation-card li {
+    padding: 0.5rem 0;
+    color: #374151;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.recommendation-card li:last-child {
+    border-bottom: none;
+}
+
+.recommendation-card li:before {
+    content: "• ";
+    color: #00D9FF;
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.reset-btn {
+    width: 100%;
+    max-width: 300px;
+    display: block;
+    margin: 0 auto;
+    padding: 0.875rem 2rem;
+    background: white;
+    color: #0099CC;
+    font-weight: 600;
+    font-size: 1rem;
+    border: 2px solid #00D9FF;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reset-btn:hover {
+    background: rgba(0, 217, 255, 0.1);
+}
+
 .footer {
     text-align: center;
     font-size: 0.75rem;
@@ -146,6 +355,7 @@ body {
     font-style: italic;
     padding-top: 1.5rem;
     border-top: 1px solid #E5E7EB;
+    margin-top: 2rem;
 }
 
 @media (max-width: 768px) {
@@ -168,6 +378,14 @@ body {
     .value-display {
         padding: 1.5rem;
     }
+
+    .mode-selector {
+        flex-direction: column;
+    }
+
+    .recommendations-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 480px) {
@@ -177,5 +395,10 @@ body {
     
     .chart-container {
         height: 250px;
+    }
+
+    .mode-btn {
+        padding: 0.625rem 1.5rem;
+        font-size: 0.9375rem;
     }
 }

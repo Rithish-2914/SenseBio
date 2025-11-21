@@ -5,6 +5,8 @@ let chartData = {
 };
 
 const MAX_DATA_POINTS = 60;
+let autoRefreshInterval = null;
+let currentMode = 'auto';
 
 function getStatusInfo(cortisol) {
     if (cortisol < 5) {
@@ -154,8 +156,111 @@ function updateChart(data) {
     cortisolChart.update('none');
 }
 
+function switchMode(mode) {
+    currentMode = mode;
+    
+    const autoModeBtn = document.getElementById('autoModeBtn');
+    const manualModeBtn = document.getElementById('manualModeBtn');
+    const autoMode = document.getElementById('autoMode');
+    const manualMode = document.getElementById('manualMode');
+    
+    if (mode === 'auto') {
+        autoModeBtn.classList.add('active');
+        manualModeBtn.classList.remove('active');
+        autoMode.style.display = 'block';
+        manualMode.style.display = 'none';
+        
+        fetch('/api/reset-mode', { method: 'POST' });
+        
+        if (!autoRefreshInterval) {
+            autoRefreshInterval = setInterval(fetchCortisolData, 1000);
+        }
+    } else {
+        autoModeBtn.classList.remove('active');
+        manualModeBtn.classList.add('active');
+        autoMode.style.display = 'none';
+        manualMode.style.display = 'block';
+        
+        if (autoRefreshInterval) {
+            clearInterval(autoRefreshInterval);
+            autoRefreshInterval = null;
+        }
+    }
+}
+
+async function submitCortisol(event) {
+    event.preventDefault();
+    
+    const cortisolInput = document.getElementById('cortisolInput');
+    const errorMessage = document.getElementById('errorMessage');
+    const value = parseFloat(cortisolInput.value);
+    
+    errorMessage.style.display = 'none';
+    
+    try {
+        const response = await fetch('/api/input-cortisol', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ cortisol: value })
+        });
+        
+        const data = await response.json();
+        
+        if (!response.ok) {
+            errorMessage.textContent = data.error || 'An error occurred';
+            errorMessage.style.display = 'block';
+            return;
+        }
+        
+        displayRecommendations(data);
+        document.getElementById('cortisolInputForm').style.display = 'none';
+        
+    } catch (error) {
+        errorMessage.textContent = 'Network error. Please try again.';
+        errorMessage.style.display = 'block';
+    }
+}
+
+function displayRecommendations(data) {
+    const recommendationsSection = document.getElementById('recommendationsSection');
+    const manualCortisolValue = document.getElementById('manualCortisolValue');
+    const manualTimestamp = document.getElementById('manualTimestamp');
+    const manualStatusBadge = document.getElementById('manualStatusBadge');
+    
+    manualCortisolValue.textContent = data.cortisol.toFixed(2);
+    manualTimestamp.textContent = `Recorded: ${data.timestamp}`;
+    
+    const status = getStatusInfo(data.cortisol);
+    manualStatusBadge.textContent = status.text;
+    manualStatusBadge.className = 'status-badge ' + status.class;
+    
+    const recommendations = data.recommendations;
+    
+    document.getElementById('dietAdvice').innerHTML = 
+        recommendations.diet_advice.map(item => `<li>${item}</li>`).join('');
+    
+    document.getElementById('foodsToEat').innerHTML = 
+        recommendations.foods_to_eat.map(item => `<li>${item}</li>`).join('');
+    
+    document.getElementById('foodsToAvoid').innerHTML = 
+        recommendations.foods_to_avoid.map(item => `<li>${item}</li>`).join('');
+    
+    document.getElementById('lifestyleTips').innerHTML = 
+        recommendations.lifestyle_tips.map(item => `<li>${item}</li>`).join('');
+    
+    recommendationsSection.style.display = 'block';
+}
+
+function resetInput() {
+    document.getElementById('recommendationsSection').style.display = 'none';
+    document.getElementById('cortisolInputForm').style.display = 'block';
+    document.getElementById('cortisolInput').value = '';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initChart();
     fetchCortisolData();
-    setInterval(fetchCortisolData, 1000);
+    autoRefreshInterval = setInterval(fetchCortisolData, 1000);
 });
