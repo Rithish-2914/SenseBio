@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SenseBio - Real-time Hormone Monitoring</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-card">
+            <header class="header">
+                <h1 class="title">SenseBio</h1>
+                <p class="subtitle">Real-time Hormone Monitoring Prototype</p>
+            </header>
+
+            <div class="live-indicator">
+                <div class="pulse-dot"></div>
+                <span>LIVE</span>
+            </div>
+
+            <div class="value-container">
+                <div class="status-badge" id="statusBadge">Normal</div>
+                <div class="value-display">
+                    <span class="value-number" id="cortisolValue">--</span>
+                    <span class="value-unit">ng/mL</span>
+                </div>
+                <div class="timestamp" id="timestamp">--</div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="cortisolChart"></canvas>
+            </div>
+
+            <footer class="footer">
+                SenseBio Prototype — Not a medical device
+            </footer>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
